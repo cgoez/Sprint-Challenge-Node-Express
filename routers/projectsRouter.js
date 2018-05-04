@@ -91,4 +91,31 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// DELETE ; remove
+router.delete("/:id", (req, res) => {
+    const { id } = req.params;
+  
+    db
+      .get(id)
+      .then(response => {
+        project = { ...response }; // [0]?
+  
+        db
+          .remove(id)
+          .then(response => {
+            res.status(200).json(project);
+          })
+          .catch(error => {
+            res.status(404).json({
+              error: "The project with the specified id could not be found."
+            });
+          });
+      })
+      .catch(error => {
+        res.status(500).json({
+          error: "There was an error deleting the project."
+        });
+      });
+  });
+
 module.exports = router;
