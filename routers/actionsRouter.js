@@ -31,7 +31,24 @@ router.get("/:id", (req, res) => {
     })
     .catch(error => {
       res.status(500).json({
-        error: "There was an error getting the specified action"
+        error: "There was an error getting the specified action."
+      });
+    });
+});
+
+// POST ; insert()
+// check req.body for check later
+router.post("/", (req, res) => {
+  const action = req.body;
+
+  actionModel
+    .insert(action)
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error posting the action."
       });
     });
 });
