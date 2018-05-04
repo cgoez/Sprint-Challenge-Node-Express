@@ -51,3 +51,27 @@ router.get("/:id/actions", (req, res) => {
       });
     });
 });
+
+// POST ; insert()
+router.post("/", (req, res) => {
+    const project = req.body;
+  
+    if (project.name && project.description) {
+      db
+        .insert(project)
+        .then(response => {
+          res.status(201).json(response);
+        })
+        .catch(error => {
+          res.status(500).json({
+            error: "There was an error posting the action."
+          });
+        });
+    } else {
+      res.status(400).json({
+        error: "Please provide a project id, description, AND notes."
+      });
+    }
+  });
+
+  module.exports = router;
