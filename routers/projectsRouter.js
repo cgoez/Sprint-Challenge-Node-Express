@@ -19,3 +19,19 @@ router.get("/", (req, res) => {
       });
     });
 });
+
+// GET :id
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  db
+    .get(id)
+    .then(project => {
+      res.status(200).json(project);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error getting the specified project."
+      });
+    });
+});
