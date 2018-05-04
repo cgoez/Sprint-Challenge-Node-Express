@@ -39,7 +39,7 @@ export default class Project extends Component {
   //   }
 
   render() {
-    const { name, description, completed } = this.state.project;
+    const { name, description } = this.state.project;
 
     return (
       <div>

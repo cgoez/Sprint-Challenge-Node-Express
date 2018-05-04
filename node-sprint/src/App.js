@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // components
 import ProjectsList from "./components/ProjectsList";
@@ -13,11 +13,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Node Projects</h1>
         </header>
-        <p className="App-intro">Node Projects</p>
-        <Route exact path="/" component={ProjectsList} />
-        <Route exact path="/:id" component={Project} />
+        <Switch>
+          <Route exact path="/project" component={ProjectsList} />
+          <Route path="/project/:id" component={Project} />
+          <Route component={() => <h2>No projects found here!</h2>} />
+        </Switch>
       </div>
     );
   }

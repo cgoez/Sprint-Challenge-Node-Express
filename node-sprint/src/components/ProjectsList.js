@@ -29,10 +29,11 @@ export default class ProjectsList extends Component {
   render() {
     return (
       <div>
+          <h3>Projects List</h3>
         {this.state.projects.map((project, index) => {
           return (
             <div key={index}>
-              <Link to={`/${project.id}`}>{project.name}</Link>
+              <Link to={`/project/${project.id}`}>{project.name}</Link>
             </div>
           );
         })}
