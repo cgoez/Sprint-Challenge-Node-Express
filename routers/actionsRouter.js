@@ -19,3 +19,19 @@ router.get("/", (req, res) => {
       });
     });
 });
+
+// GET :id
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+
+  actionModel
+    .get(id)
+    .then(action => {
+      res.status(200).json(action);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error getting the specified action"
+      });
+    });
+});
