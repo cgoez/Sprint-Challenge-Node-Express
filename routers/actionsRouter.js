@@ -4,12 +4,12 @@ const express = require("express");
 // Router middleware
 const router = express.Router();
 
-const actionModel = require("../data/helpers/actionModel");
+const db = require("../data/helpers/actionModel");
 
 // GET
 // test ok
 router.get("/", (req, res) => {
-  actionModel
+  db
     .get()
     .then(actions => {
       res.status(200).json(actions);
@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  actionModel
+  db
     .get(id)
     .then(action => {
       res.status(200).json(action);
@@ -39,12 +39,12 @@ router.get("/:id", (req, res) => {
 });
 
 // POST ; insert()
-// check req.body for check later
+// test ok
 router.post("/", (req, res) => {
   const action = req.body;
 
   if (action.project_id && action.description && action.notes) {
-    actionModel
+    db
       .insert(action)
       .then(response => {
         res.status(201).json(response);
@@ -62,11 +62,12 @@ router.post("/", (req, res) => {
 });
 
 // PUT ; update()
+// test ok
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const update = req.body;
 
-  actionModel
+  db
     .update(id, update)
     .then(response => {
       res.status(200).json(response);
@@ -79,15 +80,16 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE ; remove()
+// test ok
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
-  actionModel
+  db
     .get(id)
     .then(response => {
       action = { ...response }; // [0]?
 
-      actionModel
+      db
         .remove(id)
         .then(response => {
           res.status(200).json(action);

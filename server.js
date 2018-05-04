@@ -15,7 +15,7 @@ server.use(cors());
 
 // Route Handlers
 server.use("/api/actions", actionsRouter);
-// server.use("/api/projects", projectsRouter);
+server.use("/api/projects", projectsRouter);
 
 // Server running
 server.get("/", (req, res) => {
