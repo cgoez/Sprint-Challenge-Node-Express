@@ -7,7 +7,6 @@ const router = express.Router();
 const db = require("../data/helpers/actionModel");
 
 // GET
-// test ok
 router.get("/", (req, res) => {
   db
     .get()
@@ -22,7 +21,6 @@ router.get("/", (req, res) => {
 });
 
 // GET :id
-// test ok
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -39,7 +37,6 @@ router.get("/:id", (req, res) => {
 });
 
 // POST ; insert()
-// test ok
 router.post("/", (req, res) => {
   const action = req.body;
 
@@ -62,7 +59,6 @@ router.post("/", (req, res) => {
 });
 
 // PUT ; update()
-// test ok
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const update = req.body;
@@ -80,14 +76,13 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE ; remove()
-// test ok
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
   db
     .get(id)
     .then(response => {
-      action = { ...response }; // [0]?
+      action = { ...response };
 
       db
         .remove(id)

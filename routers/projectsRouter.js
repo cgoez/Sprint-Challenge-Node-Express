@@ -98,7 +98,7 @@ router.delete("/:id", (req, res) => {
     db
       .get(id)
       .then(response => {
-        project = { ...response }; // [0]?
+        project = { ...response };
   
         db
           .remove(id)
