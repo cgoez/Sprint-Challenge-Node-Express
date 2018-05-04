@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class ProjectsList extends Component {
   constructor() {
@@ -28,10 +29,17 @@ export default class ProjectsList extends Component {
   render() {
     return (
       <div>
-        {this.state.projects.map((project, index) => {
+        {this.state.projects.map(project => {
           return (
-            <div key={index}>
-              {project.name}              
+            <div>
+              <Link
+                to={{
+                  pathname: `/${project.id}`,
+                  state: { viewProject: project }
+                }}
+              >
+                {project.name}
+              </Link>
             </div>
           );
         })}
