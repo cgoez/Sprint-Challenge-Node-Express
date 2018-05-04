@@ -52,3 +52,20 @@ router.post("/", (req, res) => {
       });
     });
 });
+
+// PUT ; update()
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const update = req.body;
+
+  actionModel
+    .update(id, update)
+    .then(response => {
+      res.status(200).json(response);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error updating the action."
+      });
+    });
+});
