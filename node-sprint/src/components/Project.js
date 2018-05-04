@@ -19,7 +19,7 @@ export default class Project extends Component {
       .get("http://localhost:5000/api/projects")
       .then(response => {
         let data = response.data.find(function(element) {
-          return element.id === id;
+          return element.id === id - 1;
         });
         if (data) {
           alert("Project not found");
