@@ -69,3 +69,32 @@ router.put("/:id", (req, res) => {
       });
     });
 });
+
+// DELETE ; remove()
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+
+  actionModel
+    .get(id)
+    .then(response => {
+      action = { ...response }; // [0]?
+
+      actionModel
+        .remove(id)
+        .then(response => {
+          res.status(200).json(action);
+        })
+        .catch(error => {
+          res.status(404).json({
+            error: "The action with the specified id could not be found."
+          });
+        });
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error deleting the action."
+      });
+    });
+});
+
+module.exports = router;
