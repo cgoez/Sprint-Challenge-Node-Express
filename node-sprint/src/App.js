@@ -3,6 +3,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Route } from "react-router-dom";
 
+// components
+import ProjectsList from "./components/ProjectsList";
+
 class App extends Component {
   render() {
     return (
@@ -11,9 +14,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <p className="App-intro">List of projects!</p>
+        <Route exact path="/" component={ProjectsList} />
       </div>
     );
   }
