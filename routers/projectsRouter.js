@@ -35,3 +35,19 @@ router.get("/:id", (req, res) => {
       });
     });
 });
+
+// GET :id/actions ; getProjectActions()
+router.get("/:id/actions", (req, res) => {
+  const { id } = req.params;
+
+  db
+    .getProjectActions(id)
+    .then(actions => {
+      res.status(200).json(actions);
+    })
+    .catch(error => {
+      res.status(500).json({
+        error: "There was an error getting the specified project's actions."
+      });
+    });
+});
